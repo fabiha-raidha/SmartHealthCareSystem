@@ -62,6 +62,18 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 </a>
             </li>
 
+            <li class="nav-item mb-2">
+                <a href="symptom_view.php" class="nav-link text-white <?php echo ($current_page == 'symptom_view.php' || $current_page == 'symptom_form.php' || $current_page == 'symptom_update.php') ? 'bg-primary rounded' : ''; ?>">
+                    🩹 Symptom & Disease
+                </a>
+            </li>
+
+            <li class="nav-item mb-2">
+                <a href="recommendation_view.php" class="nav-link text-white <?php echo ($current_page == 'recommendation_view.php' || $current_page == 'recommendation_form.php' || $current_page == 'recommendation_update.php') ? 'bg-primary rounded' : ''; ?>">
+                    🌿 Recommendations
+                </a>
+            </li>
+
         </ul>
 
         <div class="mt-auto text-center small text-light pt-3">

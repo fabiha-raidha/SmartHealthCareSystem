@@ -15,7 +15,7 @@ if (isset($_POST['update'])) {
     $name           = trim($_POST['name'] ?? '');
     $specialization = trim($_POST['specialization'] ?? '');
     $email          = trim($_POST['email'] ?? '');
-    $password       = trim($_POST['password'] ?? '');
+}
 
     if ($name === "" || $specialization === "" || $email === "") {
         $message = "Name, specialization, and email are required.";
@@ -24,11 +24,10 @@ if (isset($_POST['update'])) {
         $message = "Please enter a valid email address.";
         $messageType = "danger";
     } else {
-        if ($password !== "") {
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            $stmt = $conn->prepare("UPDATE doctors SET name=?, specialization=?, email=?, password=? WHERE id=?");
-            $stmt->bind_param("ssssi", $name, $specialization, $email, $hashed_password, $doctor_id);
-        } else {
+        
+            $stmt = $conn->prepare("UPDATE doctors SET name=?, specialization=?, email=?,  WHERE id=?");
+            $stmt->bind_param("sssi", $name, $specialization, $email, $doctor_id);
+        
             $stmt = $conn->prepare("UPDATE doctors SET name=?, specialization=?, email=? WHERE id=?");
             $stmt->bind_param("sssi", $name, $specialization, $email, $doctor_id);
         }
@@ -42,8 +41,8 @@ if (isset($_POST['update'])) {
         }
 
         $stmt->close();
-    }
-}
+    
+
 
 if (!isset($_GET['id']) && !isset($_POST['doctor_id'])) {
     header("Location: doctor_view.php");
@@ -115,10 +114,10 @@ $stmt->close();
                             <input type="email" class="form-control" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
                         </div>
 
-                        <div class="mb-3">
+                        <!--<div class="mb-3">
                             <label class="form-label">New Password</label>
                             <input type="password" class="form-control" name="password" placeholder="Leave blank if you do not want to change password">
-                        </div>
+                        </div>-->
 
                         <button type="submit" name="update" class="btn btn-primary">Update Doctor</button>
                         <a href="doctor_view.php" class="btn btn-secondary">Back</a>

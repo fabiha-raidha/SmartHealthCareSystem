@@ -14,19 +14,19 @@ if (isset($_POST['submit'])) {
     $name           = trim($_POST['name'] ?? '');
     $specialization = trim($_POST['specialization'] ?? '');
     $email          = trim($_POST['email'] ?? '');
-    $password       = trim($_POST['password'] ?? '');
+    
 
-    if ($name === "" || $specialization === "" || $email === "" || $password === "") {
+    if ($name === "" || $specialization === "" || $email === "" ) {
         $message = "All fields are required.";
         $messageType = "danger";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $message = "Please enter a valid email address.";
         $messageType = "danger";
     } else {
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    
 
-        $stmt = $conn->prepare("INSERT INTO doctors (name, specialization, email, password) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $name, $specialization, $email, $hashed_password);
+        $stmt = $conn->prepare("INSERT INTO doctors (name, specialization, email ) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $name, $specialization, $email);
 
         if ($stmt->execute()) {
             header("Location: doctor_view.php");
@@ -83,10 +83,10 @@ if (isset($_POST['submit'])) {
                             <input type="email" class="form-control" name="email" required>
                         </div>
 
-                        <div class="mb-3">
+                        <!--<div class="mb-3">
                             <label class="form-label">Password</label>
                             <input type="password" class="form-control" name="password" required>
-                        </div>
+                        </div>--> 
 
                         <button type="submit" name="submit" class="btn btn-primary">Save Doctor</button>
                         <a href="doctor_view.php" class="btn btn-secondary">Back</a>

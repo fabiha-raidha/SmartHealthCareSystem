@@ -78,7 +78,7 @@ $patients = $conn->query("SELECT id, firstname, lastname FROM users ORDER BY id 
                     <h2 class="mb-1">Update Investigation Record</h2>
                     <p class="text-muted mb-0">Smart Healthcare Management System</p>
                 </div>
-                <!--<a class="btn btn-secondary" href="investigation_view.php">Back</a>-->
+                <a class="btn btn-secondary" href="investigation_view.php">Back</a>
             </div>
 
             <div class="card shadow-sm border-0">

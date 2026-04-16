@@ -14,20 +14,20 @@ if (isset($_POST['submit'])) {
     $first_name = trim($_POST['firstname'] ?? '');
     $last_name  = trim($_POST['lastname'] ?? '');
     $email      = trim($_POST['email'] ?? '');
-    $password   = trim($_POST['password'] ?? '');
+    
     $gender     = trim($_POST['gender'] ?? '');
 
-    if ($first_name === "" || $last_name === "" || $email === "" || $password === "" || $gender === "") {
+    if ($first_name === "" || $last_name === "" || $email === ""  || $gender === "") {
         $message = "All fields are required.";
         $messageType = "danger";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $message = "Please enter a valid email address.";
         $messageType = "danger";
     } else {
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        
 
-        $stmt = $conn->prepare("INSERT INTO users (lastname, firstname, email, password, gender) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $last_name, $first_name, $email, $hashed_password, $gender);
+        $stmt = $conn->prepare("INSERT INTO users (lastname, firstname, email,  gender) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $last_name, $first_name, $email, $gender);
 
         if ($stmt->execute()) {
             header("Location: view.php");
@@ -87,10 +87,10 @@ if (isset($_POST['submit'])) {
                                 <input type="email" class="form-control" name="email" required>
                             </div>
 
-                            <div class="mb-3">
+                            <!--<div class="mb-3">
                                 <label class="form-label">Password</label>
                                 <input type="password" class="form-control" name="password" required>
-                            </div>
+                            </div>-->
 
                             <div class="mb-3">
                                 <label class="form-label d-block">Gender</label>

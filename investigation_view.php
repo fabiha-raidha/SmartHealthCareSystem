@@ -64,7 +64,7 @@ if (!function_exists('e')) {
                             type="text" 
                             name="search" 
                             class="form-control" 
-                            placeholder="Search by ID / Patient / Subject"
+                            placeholder="Search by ID / Subject"
                             value="<?php echo e($search); ?>"
                         >
                         <button class="btn btn-primary">Search</button>

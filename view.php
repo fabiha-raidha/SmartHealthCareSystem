@@ -87,7 +87,7 @@ if (!function_exists('e')) {
                                         <th>Last Name</th>
                                         <th>Email</th>
                                         <th>Gender</th>
-                                        <th>Password</th>
+                                        <!--<th>Password</th>-->
                                         <th width="180">Action</th>
                                     </tr>
                                 </thead>
@@ -99,7 +99,7 @@ if (!function_exists('e')) {
                                             <td><?php echo e($row['lastname']); ?></td>
                                             <td><?php echo e($row['email']); ?></td>
                                             <td><?php echo e($row['gender']); ?></td>
-                                            <td>••••••••</td>
+                                            <!--<td>••••••••</td>-->
                                             <td>
                                                 <a class="btn btn-sm btn-info text-white" href="update.php?id=<?php echo (int)$row['id']; ?>">Edit</a>
                                                 <a class="btn btn-sm btn-danger" href="delete.php?id=<?php echo (int)$row['id']; ?>" onclick="return confirm('Are you sure you want to delete this patient?');">Delete</a>
